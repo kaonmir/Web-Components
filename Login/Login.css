@@ -1,0 +1,96 @@
+@import url(//fonts.googleapis.com/css?family=Bungee&subset=latin);
+@import url(//fonts.googleapis.com/css?family=Gravitas+One&subset=latin);
+@import url(//fonts.googleapis.com/css?family=Fjalla+One&subset=latin);
+
+.signin {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 40vh;
+    height: 40vh;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-flow: column;
+
+    padding: 10px;
+    border-radius: 10px;
+    background-color: lightslategray;
+
+}
+.title {
+    font-family: 'Bungee', sans-serif;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: #b8ff4d;
+}
+.box {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    flex-flow: column;
+
+}
+
+.box input, .box button {
+    border-radius: 5px;
+
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+    line-height: 18px;
+
+    transition: 0.6s;
+    transition-delay: 0.1s;
+}
+.box input {
+    width: 60%;
+    margin-top: 15px;
+    border: 1px solid #4dff4d;
+
+    font-size: 12px;
+    text-align: center;
+    font-family: 'Fjalla One', sans-serif;
+    letter-spacing: 0.8px;
+}
+.box input:hover, .box button:hover, .box input:focus{
+    width: 85%;
+    transition: 0.6s;
+}
+
+.box input::placeholder {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: gray;
+}
+.box button {
+    width: 30%;
+
+    margin-top: 20px;
+
+    background-color: #4dff4d;
+    color: black;
+    font-size: 13px;
+    font-family: 'Gravitas One', sans-serif;
+    border: none;
+}
+.box button:hover {
+    cursor: pointer;
+    background-color: #4dffff;
+
+    width: 60%;
+    transition: 0.9s;
+}
+
+.login_error {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #b33636;
+    font-family: Arial, Helvetica, sans-serif;
+}
