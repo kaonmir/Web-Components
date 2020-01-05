@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import "./Login.css"
 
 class Login extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
             username: "",
             password: "",
             login_error: "",
+            logined: sessionStorage.getItem('logined')
         }
 
         const hidden = {
@@ -15,20 +17,25 @@ class Login extends Component {
             created_date: localStorage.getItem('hidden_created_date'),
             hidden: localStorage.getItem('hidden_hidden')
         }
-        fetch('http://localhost:4000/login', {
-            method: 'post',
-            headers: {'Content-Type': 'application/json; charset=UTF-8',},
-            body: JSON.stringify({hidden: hidden})
-        })
-        .then(res => res.json())
-        .then(json => {if(json.result === true) alert("You already logined!");})
-        .catch(error => console.log(error))
+        if(this.state.logined != null) {
+            /** 1. 창을 껐다 켜는 경우 로그인 흔적이 남아 있는가
+             *  2. 로그아웃하고 다시 로그인 할 경우 흔적을 인정할 것인가
+             * => 로그아웃하면 모든 흔적을 지우는 걸로 한다.
+             * => 단 1과의 구별을 위해 session storage의 logined는 false로 유지한다.
+             */
+            fetch('http://localhost:4000/login', {
+                method: 'post',
+                headers: {'Content-Type': 'application/json; charset=UTF-8',},
+                body: JSON.stringify({hidden: hidden})
+            })
+            .then(res => res.json())
+            .then(json => {
+                if(json.result === true) sessionStorage.setItem('logined', true)
+            })
+            .catch(error => console.log(error))
+        }
     }
-    handlechange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    }
+    handlechange = (event) => this.setState({[event.target.name]: event.target.value});
     submit = (event) => {
         const {username, password} = this.state;
 
@@ -47,11 +54,23 @@ class Login extends Component {
                     localStorage.setItem('hidden_username', username);
                     localStorage.setItem('hidden_created_date', new Date());
                     localStorage.setItem('hidden_hidden', json.hidden);
+
+                    setTimeout(() => this.logout(), json.expired); // 시간 지나면 자동 로그아웃
+                    console.log(json.expired);
                 }
                 else this.setState({login_error: "login failed"})
             })
             .catch(error => console.log(error));
         }
+    }
+
+    logout = () => {
+        localStorage.removeItem('hidden_username');
+        localStorage.removeItem('hidden_created_date');
+        localStorage.removeItem('hidden_hidden');
+
+        sessionStorage.setItem('logined', false);
+        alert("logout!");
     }
 
     enterPressed = (event) => {
