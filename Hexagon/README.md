@@ -4,7 +4,7 @@
 ``` Javascript
 import Hexagon from './Hexagon';
 ...
-<Hexagon length="25" color="blue />
+<Hexagon length="25" color="blue" />
 ```
 ### Definition and Usage
     The <Hexagon> component defines a hexagon figure.    
@@ -19,26 +19,26 @@ import Hexagon from './Hexagon';
 ### Sample Image
 ![Hexagon Image](./image/hexagon.png)
 
---------------------------------------------------------------------------------------------
+--------------------------------------------------------
 
 ## HexagonTable(육각형 타일)
 ### Example
 ``` Javascript
 import HexagonTable from './HexagonTable';
 ...
-<HexagonTable row="8" col="10" length="25" color="blue />
+<HexagonTable row="6" col="10" length="25" color="magenta" />
 ```
 ### Definition and Usage
     The <HexagonTable> component defines a hexagon pattern tiles.    
     The <HexagonTable> is also strictly matched with its shape.
 ### Attributes
-|  Attribute  |          Value       | Default | Description
-|-------------|----------------------|---------|--------------|
-|     row     |   Positive Integer   | 3       | number of rows
-|     col     |   Positive Integer   | 3       | number of cols
-|    length   |   Positive Integer   | 30      | The length of one side of hexagon |
-|    margin   |   Positive Integer   | red     | Right margin of hexagon |
-|    color    | color \| transparent | tiptoe  | background-color of hexagon<br>**No border in this tag!**
-| orientation |    tiptoe \| foot    |
+|  Attribute  |          Value       |  Default  | Description
+|-------------|----------------------|-----------|--------------|
+|     row     |   Positive Integer   | 3         | number of rows
+|     col     |   Positive Integer   | 3         | number of cols
+|    length   |   Positive Integer   | 30        | The length of one side of hexagon |
+|    margin   |   Positive Integer   | 3         | Right margin of hexagon |
+|    color    | color \| transparent | #2952a3 | background-color of hexagon<br>**No border in this tag!**
+| orientation |    tiptoe \| foot    | tiptoe  | **tiptoe** : hexagon, a vertex is the most bottom element<br>&nbsp;**foot** &nbsp; : hexagon, a side is the most bottom element
 ### Sample Image
 ![HexagonTable Image](./image/hexagonTable.png)
