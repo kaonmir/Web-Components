@@ -21,7 +21,7 @@ class HexagonTable extends Component {
             hexagon_col = {
                 display: "inline-flex",
                 flexDirection: "column",
-                height: `${Math.sqrt(3)*length/2+margin+col*(Math.sqrt(3)*length+margin)-margin/2}px`,
+                height: `${(Math.sqrt(3)*length+margin)*row + Math.sqrt(3)*length/2}px`,
                 marginBottom: `-${margin}px`
             }
             
