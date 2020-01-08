@@ -11,15 +11,34 @@ class Hexagon extends Component {
             middle_w: length * Math.sqrt(3),
 
             color: this.props.color,
-            isTiptoe: this.props.orientation.trim() === "tiptoe" ? true : false,
+            isFoot: this.props.orientation.trim() === "foot" ? true : false,
         }
     }
     render() {
-        const {top_h, top_w, middle_h, middle_w, color, isTiptoe} = this.state;
+        const {top_h, top_w, middle_h, middle_w, color, isFoot} = this.state;
         const {length, margin} = this.props;
         let top, middle, bottom, box;
 
-        if(isTiptoe) {
+        if(isFoot) {
+            box = {
+                width: `${3/2*length+Math.sqrt(3)/2*margin}px`,
+                float: "left",
+                marginBottom: `${margin}px`,
+            }
+            top = {
+                width: `${this.props.length}px`,
+                borderBottom: `${top_w}px solid ${color}`,
+                borderLeft: `${top_h}px solid transparent`,
+                borderRight: `${top_h}px solid transparent`
+            }
+            bottom = {
+                width: `${this.props.length}px`,
+                borderTop: `${top_w}px solid ${color}`,
+                borderLeft: `${top_h}px solid transparent`,
+                borderRight: `${top_h}px solid transparent`
+            }
+        }
+        else {
             box = {
                 float: "left",
                 height: `${3/2*length + 3/2/Math.sqrt(3)*margin}px`,
@@ -41,25 +60,6 @@ class Hexagon extends Component {
                 borderTop: `${top_h}px solid ${color}`,
                 borderLeft: `${top_w}px solid transparent`,
                 borderRight: `${top_w}px solid transparent`
-            }
-        }
-        else {
-            box = {
-                width: `${3/2*length+Math.sqrt(3)/2*margin}px`,
-                float: "left",
-                marginBottom: `${margin}px`,
-            }
-            top = {
-                width: `${this.props.length}px`,
-                borderBottom: `${top_w}px solid ${color}`,
-                borderLeft: `${top_h}px solid transparent`,
-                borderRight: `${top_h}px solid transparent`
-            }
-            bottom = {
-                width: `${this.props.length}px`,
-                borderTop: `${top_w}px solid ${color}`,
-                borderLeft: `${top_h}px solid transparent`,
-                borderRight: `${top_h}px solid transparent`
             }
         }
         return(
